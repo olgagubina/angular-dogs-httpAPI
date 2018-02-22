@@ -12,6 +12,7 @@ const DOGS = [
 /* GET api listing. */
 router.get('/dogs', (req, res) => {
   res.send(JSON.stringify(DOGS));
+    // res.status(500).send("Unable to access DB");
 });
 
 router.post('/dogs', (req, res) => {

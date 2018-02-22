@@ -1,9 +1,10 @@
-<app-dog-editor [dog]="selectedDog"></app-dog-editor>
+<app-dog-editor [dog]="selectedDog" (onClickAddDog)='addDog($event)' (onClickEditDog)='updateDog($event)'></app-dog-editor>
 
 <h3>{{title}}</h3>
 <ul>
     <li *ngFor="let dog of dogs; let idx = index">
       <span>{{idx + 1}}) {{dog.name | uppercase}} - {{dog.weight}}kgs, born in {{dog.birthDate | date: 'fullDate'}}</span>
       <button (click)="editDog(dog)">Edit</button>
+      <button (click)="deleteDog(dog)">Delete</button>
     </li>
 </ul>

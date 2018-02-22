@@ -15,11 +15,46 @@ export class DogsComponent implements OnInit {
 
   ngOnInit() {
   	this.title = "Our dogs";
-  	this.dogs = this.dogService.getDogs();
+    this.dogService.getDogs()
+    .subscribe(
+      data => 
+      this.dogs = data, 
+      error => {
+        console.error(error)
+    });  
   }
 
-  editDog(dog: Dog) {
-   this.selectedDog = Object.assign({}, dog);
+  addDog(dog){
+  	this.dogService.addDog(dog).subscribe(
+      data => 
+      this.dogs.push(data), 
+      error => {
+        console.error(error)
+      });  	
   }
 
+  updateDog(dog) {
+  this.dogService.updateDog(dog).subscribe(data =>{
+    var updateDogIndex = this.dogs.findIndex((dog) => dog.id == data.id);
+    this.dogs[updateDogIndex] = data;
+    this.selectedDog = new Dog();
+    }, 
+    error => {
+      console.error(error)
+    })
+  }
+
+  editDog(dog:Dog) {
+    this.selectedDog = Object.assign({}, dog);
+  }
+
+  deleteDog(deleteDog:Dog) {
+    this.dogService.deleteDog(deleteDog).subscribe(data => {
+      var deleteDogIndex = this.dogs.findIndex((dog) => dog.id.toString() == deleteDog.id.toString());
+      this.dogs.splice(deleteDogIndex, 1);
+    }, 
+    error => {
+      console.error(error)
+    })
+  }
 }

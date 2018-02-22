@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy  {
   constructor() {}
   
   ngOnInit() { 
-  	this.sayHello = window.setInterval(() => console.log('Hello!'),  1000);	
+  	// this.sayHello = window.setInterval(() => console.log('Hello!'),  1000);	
   }
   
   ngOnDestroy(){

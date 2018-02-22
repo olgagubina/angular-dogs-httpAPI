@@ -13,7 +13,7 @@
     <label>Birth Date:
       <input type="text" [(ngModel)]="dog.birthDate" placeholder="Date"  />
     </label>
-    <button *ngIf="isEditMode()" (click)="updateDog()">Update Dog</button>
+    <button *ngIf="isEditMode()" (click)="editDog()">Update Dog</button>
     <button *ngIf="!isEditMode()" (click)="addDog()">Add dog</button>
 </div>
 
